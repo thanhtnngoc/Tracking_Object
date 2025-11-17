@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket UI</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    #log { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h2>WebSocket Client</h2>
+
+  <input id="msg" placeholder="Nhập tin nhắn..." style="width: 300px;">
+  <button onclick="sendMsg()">Gửi</button>
+
+  <h3>Logs:</h3>
+  <div id="log"></div>
+
+  <script>
+    const ws = new WebSocket("ws://127.0.0.1:5678");
+    const logDiv = document.getElementById("log");
+
+    ws.onopen = () => log("✅ Connected to Python server");
+    ws.onmessage = (event) => log("📥 " + event.data);
+    ws.onclose = () => log("❌ Connection closed");
+
+    function sendMsg() {
+      const msg = document.getElementById("msg").value;
+      ws.send(JSON.stringify({ text: msg }));
+      log("📤 Sent: " + msg);
+    }
+
+    function log(msg) {
+      const p = document.createElement("div");
+      p.textContent = msg;
+      logDiv.appendChild(p);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+  </script>
+</body>
+</html>
