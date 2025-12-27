@@ -1,7 +1,8 @@
 import cv2
 
 # Mở camera USB (thường là /dev/video0)
-cap = cv2.VideoCapture(0)  # 0 = camera đầu tiên, đổi thành 1 nếu bạn có nhiều camera
+
+cap = cv2.VideoCapture(2)  # 0 = camera đầu tiên, đổi thành 1 nếu bạn có nhiều camera
 
 if not cap.isOpened():
     print("❌ Không mở được camera!")

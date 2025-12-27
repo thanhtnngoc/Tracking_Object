@@ -58,7 +58,7 @@ print("Translation vectors (tvecs):\n", tvecs)
 
 save_dir = "/home/thanh/ros2_ws/src/p_detect_object/"
 os.makedirs(save_dir, exist_ok=True)  # tạo nếu chưa có
-save_path = os.path.join(save_dir, "usbcamera_params.npz")
+save_path = os.path.join(save_dir, "picamera_params.npz")
 
 np.savez(save_path, mtx=mtx, dist=dist, rvecs=rvecs, tvecs=tvecs)
 print(f"✅ Đã lưu file: {save_path}")

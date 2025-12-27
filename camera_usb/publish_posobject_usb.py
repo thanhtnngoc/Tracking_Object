@@ -12,7 +12,7 @@ import numpy as np
 
 class VideoStream_UsbCam:
     """USB video stream running in a separate thread."""
-    def __init__(self, cam_index=0, resolution=(640, 480)):
+    def __init__(self, cam_index=2, resolution=(640, 480)):
         self.cap = cv2.VideoCapture(cam_index)
         if not self.cap.isOpened():
             raise RuntimeError("Failed to open USB camera!")
@@ -57,8 +57,6 @@ class ObjectScanner(Node):
         self.timer = self.create_timer(0.03, self.timer_callback)
 
         self.box_history = deque(maxlen=5)
-
-
 
     def display_frame(self, frame):
         """Display frame only if enabled."""
@@ -134,7 +132,7 @@ class ObjectScanner(Node):
                 cv2.line(annotated_frame, (cx_frame, cy_frame), (cx, cy), (0, 0, 255), 2)
                 cv2.line(annotated_frame, (cx_frame, cy_frame), (cx_frame, cy), (255, 0, 0), 2)
                 cv2.line(annotated_frame, (cx_frame, cy), (cx, cy), (0, 200, 50), 2)
-                cv2.putText(annotated_frame, f"u={cx}, v={cy}, theta={theta_deg}", (cx + 10, cy - 10),
+                cv2.putText(annotated_frame, f"u={cx}, v={cy}", (cx + 10, cy - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
         else:
             self.box_history.clear()

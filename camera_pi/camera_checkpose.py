@@ -35,7 +35,7 @@ objp[:, :2] = np.mgrid[0:checkerboard_size[0], 0:checkerboard_size[1]].T.reshape
 objp *= square_size
 
 # Đọc ảnh
-img = cv2.imread("calib_images/img_000.jpg")
+img = cv2.imread("images_calib/img_000.jpg")
 h, w = img.shape[:2]
 
 # Tính toán ma trận hiệu chỉnh

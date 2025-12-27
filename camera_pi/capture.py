@@ -90,17 +90,17 @@ if __name__ == "__main__":
         mode = "2"
 
     if mode == "1":
-        max = 30
+        max_img = 30
         interval = 1.0
         save_dir = "/home/thanh/ros2_ws/src/p_detect_object/images_calib"
     else:
-        max = None
+        max_img = None
         interval = 0.2
         save_dir = "/home/thanh/ros2_ws/src/p_detect_object/images_object"
 
     stream = VideoStream()
     w, h = 800, 600
-    capture = ImageCapture(stream, save_dir, size=(w,h), interval=interval, max_img=max, mode=mode)
+    capture = ImageCapture(stream, save_dir, size=(w,h), interval=interval, max_img=max_img, mode=mode)
 
     try:
         capture.start()
